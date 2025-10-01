@@ -59,7 +59,7 @@ async def on_message(message):
 
 @bot.command()
 async def show_config(ctx):
-    await ctx.send(f"{ctx.author.mention} Current config:\nRole: {ping_role_name}\nChannel:{bot_channel}")
+    await ctx.send(f"{ctx.author.mention} Current config:\nRole: {ping_role_name}\nChannel: {bot_channel}")
 
 @bot.command()
 async def set_role(ctx, *, msg):
@@ -100,7 +100,7 @@ async def pull(ctx):
     else:
         await ctx.send("Channel and ping role not set")
 
-time = datetime.time(hour=18)
+time = datetime.time(hour=20, minute=15)
 @tasks.loop(time=time)
 async def send_update():
     print("Trying to send update..")
