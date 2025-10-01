@@ -35,22 +35,22 @@ class BotBtnUI(discord.ui.View):
     async def button_callback(self, interaction, button):
         if ping_role_name not in interaction.user.roles:
             await interaction.user.add_roles(ping_role_name)
-            await interaction.response.send_message(f"{interaction.user.mention} nadano rolę **{ping_role_name}**")
+            await interaction.response.send_message(f"{interaction.user.mention} nadano rolę **{ping_role_name}**", ephemeral=True)
         elif not ping_role_name:
-            await interaction.response.send_message(f"Rola **{ping_role_name}** nie istnieje")
+            await interaction.response.send_message(f"Rola **{ping_role_name}** nie istnieje", ephemeral=True)
         else:
-            await interaction.response.send_message(f"{interaction.user.mention} posiadasz już rolę **{ping_role_name}**")
+            await interaction.response.send_message(f"{interaction.user.mention} posiadasz już rolę **{ping_role_name}**", ephemeral=True)
     
 
     @discord.ui.button(label="Nie chcę powiadomień!", style=discord.ButtonStyle.danger, custom_id="rm_role_btn")
     async def remove_button_callback(self, interaction, button):
         if ping_role_name in interaction.user.roles:
             await interaction.user.remove_roles(ping_role_name)
-            await interaction.response.send_message(f"{interaction.user.mention} odebrano rolę **{ping_role_name}**")
+            await interaction.response.send_message(f"{interaction.user.mention} odebrano rolę **{ping_role_name}**", ephemeral=True)
         elif not ping_role_name:
-            await interaction.response.send_message(f"Rola **{ping_role_name}** nie istnieje")
+            await interaction.response.send_message(f"Rola **{ping_role_name}** nie istnieje", ephemeral=True)
         else:
-            await interaction.response.send_message(f"{interaction.user.mention} nie posiadasz roli **{ping_role_name}**")
+            await interaction.response.send_message(f"{interaction.user.mention} nie posiadasz roli **{ping_role_name}**", ephemeral=True)
 
 
 @bot.event
@@ -87,20 +87,22 @@ async def set_channel(ctx, *, msg):
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def pull(ctx):
+    print("Trying to send update..")
     if dc_channel != None and ping_role_name != None:
         hits_pulled_today = get_hits_from_skillshot()    
         embeds = [discord.Embed(title=hit[0], description=hit[1]) for hit in hits_pulled_today]
-
-        await bot_channel.send(message_tpl.format(rola=ping_role_name.mention))
-        for embed in embeds:
-            job_message = await bot_channel.send(embed=embed)
-            await job_message.add_reaction("✅")
+        if hits_pulled_today != []:
+            await bot_channel.send(message_tpl.format(rola=ping_role_name.mention))
+            for embed in embeds:
+                job_message = await bot_channel.send(embed=embed)
+                await job_message.add_reaction("✅")
     
-        await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI())
-    else:
-        await ctx.send("Channel and ping role not set")
+            await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI())
+
 
 time = datetime.time(hour=18)
+
+
 @tasks.loop(time=time)
 async def send_update():
     print("Trying to send update..")
