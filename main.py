@@ -57,6 +57,9 @@ class BotBtnUI(discord.ui.View):
 async def on_message(message):
     await bot.process_commands(message)
 
+@bot.command()
+async def show_config(ctx):
+    await ctx.senc(f"{ctx.author.mention} Current config:\nRole: {ping_role_name}\nChannel:{bot_channel}")
 
 @bot.command()
 async def set_role(ctx, *, msg):
