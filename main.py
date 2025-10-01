@@ -74,7 +74,7 @@ async def set_channel(ctx, *, msg):
     dc_channel = discord.utils.get(ctx.guild.channels, name=msg)
 
     if dc_channel == None:
-        ctx.send("Channel does not exist")
+        await ctx.send("Channel does not exist")
     else:
         bot_channel = bot.get_channel(dc_channel.id)
         print(dc_channel)
@@ -97,7 +97,7 @@ async def pull(ctx):
     else:
         await ctx.send("Channel and ping role not set")
 
-time = datetime.time(hour=19, minute=15)
+time = datetime.time(hour=18)
 @tasks.loop(time=time)
 async def send_update():
     print("Trying to send update..")
