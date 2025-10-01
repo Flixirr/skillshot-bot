@@ -6,7 +6,7 @@ import webserver
 from skillshot_scrap import get_hits_from_skillshot
 from discord.ext import commands, tasks
 
-token = os.environ('DISCORD_TOKEN')
+token = os.environ['DISCORD_TOKEN']
 
 intents = discord.Intents.default()
 intents.message_content = True
