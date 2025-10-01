@@ -104,13 +104,15 @@ async def send_update():
     if dc_channel != None and ping_role_name != None:
         hits_pulled_today = get_hits_from_skillshot()    
         embeds = [discord.Embed(title=hit[0], description=hit[1]) for hit in hits_pulled_today]
-
-        await bot_channel.send(message_tpl.format(rola=ping_role_name.mention))
-        for embed in embeds:
-            job_message = await bot_channel.send(embed=embed)
-            await job_message.add_reaction("✅")
+        if hits_pulled_today != []:
+            await bot_channel.send(message_tpl.format(rola=ping_role_name.mention))
+            for embed in embeds:
+                job_message = await bot_channel.send(embed=embed)
+                await job_message.add_reaction("✅")
     
-        await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI())
+            await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI())
+        else:
+            bot_channel.send("# Dzisiaj brak nowych ofert!")
 
 
 
