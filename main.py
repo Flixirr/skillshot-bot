@@ -59,7 +59,7 @@ async def on_message(message):
 
 @bot.command()
 async def show_config(ctx):
-    await ctx.senc(f"{ctx.author.mention} Current config:\nRole: {ping_role_name}\nChannel:{bot_channel}")
+    await ctx.send(f"{ctx.author.mention} Current config:\nRole: {ping_role_name}\nChannel:{bot_channel}")
 
 @bot.command()
 async def set_role(ctx, *, msg):
@@ -114,8 +114,6 @@ async def send_update():
                 await job_message.add_reaction("✅")
     
             await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI())
-        else:
-            bot_channel.send("# Dzisiaj brak nowych ofert!")
 
 
 
