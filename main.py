@@ -100,7 +100,7 @@ async def pull(ctx):
     else:
         await ctx.send("Channel and ping role not set")
 
-time = datetime.time(hour=20, minute=15)
+time = datetime.time(hour=18)
 @tasks.loop(time=time)
 async def send_update():
     print("Trying to send update..")
