@@ -241,6 +241,6 @@ async def whoami_error(ctx, error):
         ctx.send("Insufficient privilages")
 
 if __name__ == "__main__":
-    #webserver.keep_alive()
+    webserver.keep_alive()
     with connection.cursor() as cursor:
         bot.run(token)
