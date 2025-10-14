@@ -1,21 +1,20 @@
 import discord
 import os
 import datetime
-import webserver
 import psycopg2
 
 from skillshot_scrap import get_hits_from_skillshot
 from dotenv import load_dotenv
 from discord.ext import commands, tasks
 
-# load_dotenv()
-token = os.environ['DISCORD_TOKEN']
+load_dotenv()
+token = os.getenv('DISCORD_TOKEN')
 
-db_name = os.environ['DB_NAME']
-db_user = os.environ['DB_USER']
-db_pass = os.environ['DB_PASS']
-db_url = os.environ['DB_URL']
-db_port = os.environ['DB_PORT']
+db_name = os.getenv('DB_NAME')
+db_user = os.getenv('DB_USER')
+db_pass = os.getenv('DB_PASS')
+db_url = os.getenv('DB_URL')
+db_port = os.getenv('DB_PORT')
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -241,6 +240,5 @@ async def whoami_error(ctx, error):
         ctx.send("Insufficient privilages")
 
 if __name__ == "__main__":
-    webserver.keep_alive()
     with connection.cursor() as cursor:
         bot.run(token)
