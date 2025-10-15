@@ -76,7 +76,7 @@ async def on_ready():
 
 class BotBtnUI(discord.ui.View):
     def __init__(self):
-        self.timeout = None
+        super().__init__(timeout=None)
 
 
     @discord.ui.button(label="Chce powiadomienia!", style=discord.ButtonStyle.primary, custom_id="add_role_btn")
