@@ -75,6 +75,11 @@ async def on_ready():
 
 
 class BotBtnUI(discord.ui.View):
+    def __init__(self, *, ctx):
+        super().__init__(timeout=None)
+        self.ctx = ctx
+
+
     @discord.ui.button(label="Chce powiadomienia!", style=discord.ButtonStyle.primary, custom_id="add_role_btn")
     async def button_callback(self, interaction: discord.Interaction, button):
         ping_role = None
