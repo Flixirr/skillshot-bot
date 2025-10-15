@@ -132,6 +132,7 @@ async def show_config(ctx):
 
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def set_role(ctx, *, msg):
     cursor.execute(check_if_exists.format(guild_id=f"'{ctx.guild.id}'"))
     guild_id = str(ctx.guild.id)
@@ -157,6 +158,7 @@ async def set_role(ctx, *, msg):
 
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def set_channel(ctx, *, msg):
     cursor.execute(check_if_exists.format(guild_id=f"'{ctx.guild.id}'"))
     guild_id = str(ctx.guild.id)
@@ -237,7 +239,7 @@ async def send_update():
 @set_role.error
 async def whoami_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
-        ctx.send("Insufficient privilages")
+        ctx.send("Insufficient privileges")
 
 if __name__ == "__main__":
     with connection.cursor() as cursor:
