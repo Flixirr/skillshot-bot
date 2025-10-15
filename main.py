@@ -75,9 +75,8 @@ async def on_ready():
 
 
 class BotBtnUI(discord.ui.View):
-    def __init__(self, *, ctx):
-        super().__init__(timeout=None)
-        self.ctx = ctx
+    def __init__(self):
+        self.timeout = None
 
 
     @discord.ui.button(label="Chce powiadomienia!", style=discord.ButtonStyle.primary, custom_id="add_role_btn")
@@ -248,4 +247,4 @@ async def whoami_error(ctx, error):
 
 if __name__ == "__main__":
     with connection.cursor() as cursor:
-        bot.run(token)
+        bot.run(token, reconnect=True)
