@@ -1,0 +1,946 @@
+[2025-10-15 13:18:23] [INFO    ] discord.client: logging in using static token
+[2025-10-15 13:18:24] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: b8de94ab64bc42ef7e929c2bab7e7909).
+[2025-10-15 13:28:58] [INFO    ] discord.client: logging in using static token
+[2025-10-15 13:29:00] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: d1be4bd0e043cd3088fb27d2648d1913).
+[2025-10-15 13:31:54] [ERROR   ] discord.ui.view: Ignoring exception in view <BotBtnUI timeout=None children=2> for item <Button style=<ButtonStyle.primary: 1> url=None disabled=False label='Chce powiadomienia!' emoji=None row=None sku_id=None id=None>
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/ui/view.py", line 552, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/cheems/praktykant-bot/skillshot-bot/main.py", line 93, in button_callback
+    await interaction.user.add_roles(ping_role)
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/member.py", line 1092, in add_roles
+    await req(guild_id, user_id, role.id, reason=reason)
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 767, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50013): Missing Permissions
+[2025-10-15 13:33:28] [ERROR   ] discord.ui.view: Ignoring exception in view <BotBtnUI timeout=None children=2> for item <Button style=<ButtonStyle.primary: 1> url=None disabled=False label='Chce powiadomienia!' emoji=None row=None sku_id=None id=None>
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/ui/view.py", line 552, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/cheems/praktykant-bot/skillshot-bot/main.py", line 93, in button_callback
+    await interaction.user.add_roles(ping_role)
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/member.py", line 1092, in add_roles
+    await req(guild_id, user_id, role.id, reason=reason)
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 767, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50013): Missing Permissions
+[2025-10-15 13:33:40] [ERROR   ] discord.ui.view: Ignoring exception in view <BotBtnUI timeout=None children=2> for item <Button style=<ButtonStyle.primary: 1> url=None disabled=False label='Chce powiadomienia!' emoji=None row=None sku_id=None id=None>
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/ui/view.py", line 552, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/cheems/praktykant-bot/skillshot-bot/main.py", line 93, in button_callback
+    await interaction.user.add_roles(ping_role)
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/member.py", line 1092, in add_roles
+    await req(guild_id, user_id, role.id, reason=reason)
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 767, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50013): Missing Permissions
+[2025-10-15 13:48:09] [INFO    ] discord.client: logging in using static token
+[2025-10-15 13:48:10] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 6a70cf418ce5973e9e820b931979f458).
+[2025-10-15 15:11:41] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 6a70cf418ce5973e9e820b931979f458.
+[2025-10-15 15:14:04] [ERROR   ] discord.client: Attempting a reconnect in 1.41s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 113] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:14:07] [ERROR   ] discord.client: Attempting a reconnect in 1.07s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:14:08] [ERROR   ] discord.client: Attempting a reconnect in 1.17s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:14:17] [ERROR   ] discord.client: Attempting a reconnect in 11.58s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:14:29] [ERROR   ] discord.client: Attempting a reconnect in 26.43s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:14:55] [ERROR   ] discord.client: Attempting a reconnect in 3.97s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:14:59] [ERROR   ] discord.client: Attempting a reconnect in 38.80s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:15:38] [ERROR   ] discord.client: Attempting a reconnect in 30.21s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:16:09] [ERROR   ] discord.client: Attempting a reconnect in 371.52s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Temporary failure in name resolution]
+[2025-10-15 15:22:31] [ERROR   ] discord.client: Attempting a reconnect in 777.66s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Temporary failure in name resolution]
+[2025-10-15 15:35:38] [ERROR   ] discord.client: Attempting a reconnect in 387.32s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1532, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1148, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1179, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1538, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Temporary failure in name resolution]
+[2025-10-15 15:42:06] [ERROR   ] discord.client: Attempting a reconnect in 613.96s
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1268, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 122, in start_connection
+    raise first_exception
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 641, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/selector_events.py", line 681, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+OSError: [Errno 101] Connect call failed ('10.0.0.1', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/discord/http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 1067, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 642, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1209, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1581, in _create_direct_connection
+    raise last_exc
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1550, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/home/cheems/praktykant-bot/env/lib/python3.13/site-packages/aiohttp/connector.py", line 1291, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [Connect call failed ('10.0.0.1', 443)]
+[2025-10-15 15:49:50] [INFO    ] discord.client: logging in using static token
+[2025-10-15 15:49:51] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: dc443b8f0d5dc9eae2773bb0a2ee2f58).
+[2025-10-15 16:06:03] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+/home/cheems/praktykant-bot/skillshot-bot/main.py:246: RuntimeWarning: coroutine 'Context.send' was never awaited
+  ctx.send("Insufficient privileges")
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+[2025-10-15 17:17:45] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-15 17:24:34] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-15 19:39:08] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-15 22:31:49] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 00:17:38] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 00:45:48] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 01:03:05] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 02:24:34] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 05:08:16] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 05:19:58] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 06:52:25] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 09:08:19] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 11:40:25] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 12:48:01] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 14:10:29] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 15:29:05] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 16:41:45] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 18:25:18] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 20:24:20] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 21:05:17] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-16 23:13:21] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 00:55:39] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 02:43:19] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 05:26:29] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 06:58:51] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 07:24:44] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 08:09:57] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 10:46:32] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 11:17:51] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 12:23:16] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 15:00:30] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 15:46:42] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 16:30:08] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 18:19:19] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session dc443b8f0d5dc9eae2773bb0a2ee2f58.
+[2025-10-17 19:06:09] [INFO    ] discord.client: logging in using static token
+[2025-10-17 19:06:11] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 26efef4fa3548dbf6f20d9875320daa6).

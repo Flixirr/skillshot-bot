@@ -26,7 +26,7 @@ def get_hits_from_skillshot() -> list[tuple[str]]:
         location = text_split[4].lstrip()
         date = notif_info[2].get_text()
 
-        role_regex = re.compile(".*prak|sta|juni", re.IGNORECASE)
+        role_regex = re.compile(".*prak|sta|juni|inter", re.IGNORECASE)
 
         discord_message_tpl = f"> :clipboard: **Rodzaj umowy:** {contract_type}\n> :office: **Firma:** {company}\n> :map: **Lokalizacja:** {location}\n> :date: **Data dodania:** {date}\n> :link: **Link:** <{job_url}>\n~~                     ~~\n"
         
