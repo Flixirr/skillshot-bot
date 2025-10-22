@@ -224,7 +224,7 @@ async def pull_test(ctx):
         await ctx.send("Not initialized. Run __set_role__ and __set_channel__ commands.")
 
 
-time = datetime.time(hour=17)
+time = datetime.time(hour=19)
 
 
 @tasks.loop(time=time)
