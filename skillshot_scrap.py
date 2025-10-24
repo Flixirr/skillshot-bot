@@ -39,6 +39,6 @@ def get_hits_from_skillshot() -> list[tuple[str]]:
         dt_date = datetime.datetime.strptime(date, '%Y-%m-%d')
 
         if dt_date == datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0):
-            hits_today.append((role, discord_message_tpl))
+            hits_today.append((role, discord_message_tpl, dt_date, company, location))
 
     return hits_today
