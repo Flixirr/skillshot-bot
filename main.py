@@ -1,5 +1,6 @@
 import discord
 import os
+import sys
 import datetime
 import psycopg2
 
@@ -176,7 +177,7 @@ async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None
         try:
             bot_channel = await get_or_fetch_channel(id=int(dc_channel))
             guild = await get_or_fetch_guild(id=int(guild_id))
-            hits_pulled_today = get_hits_from_skillshot()
+            hits_pulled_today = get_hits_from_skillshot(pages=1, date_to_compare=datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0) - datetime.timedelta(days=1))
             embeds = [discord.Embed(title=hit[0], description=hit[1]) for hit in hits_pulled_today]
 
             if hits_pulled_today != []:
@@ -240,5 +241,16 @@ async def whoami_error(ctx: discord.ext.commands.Context, error) -> None:
 if __name__ == "__main__":
     with connection.cursor() as cursor:
         DBOps = DBOperations(cursor)
-        DBOps.create_tables()
-        bot.run(token, reconnect=True)
+        if sys.argv[1:] and sys.argv[1] == "init":
+            print("Creating tables...")
+            DBOps.create_tables()
+        elif sys.argv[1:] and sys.argv[1] == "backfill":
+            if not sys.argv[2:]:
+                print("missing date on 2nd argument")
+            else:
+                try:
+                    DBOps.backfill(date_from=datetime.datetime.strptime(sys.argv[2], '%Y-%m-%d'))
+                except ValueError as ve:
+                    print("Invalid date format. Use YYYY-MM-DD.")
+        else:
+            bot.run(token, reconnect=True)

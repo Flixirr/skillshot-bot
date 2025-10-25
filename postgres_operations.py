@@ -165,11 +165,17 @@ class DBOperations:
             self.cursor.execute(sql)
             result = self.cursor.fetchone()
             return result
+    
 
+    def backfill(self, date_from: datetime.datetime) -> str:
+        """
+        Backfill historical job offers from skillshot.pl from given date
 
-from skillshot_scrap import get_hits_from_skillshot
+        :param datetime.datetime date_from: earliest date to backfill job offers from
+        :return: executed sql statement
+        :rtype: str
+        """
+        from skillshot_scrap import get_hits_from_skillshot
 
-if __name__ == "__main__":
-    hits = get_hits_from_skillshot()
-    print(hits)
-    DBOperations(None).insert_historical(hits)
+        hits = get_hits_from_skillshot(pages=5, date_to_compare=date_from)
+        return self.insert_historical(hits)
