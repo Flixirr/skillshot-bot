@@ -5,7 +5,15 @@ from bs4 import BeautifulSoup as bs
 
 skillshot_url: str = "https://www.skillshot.pl/"
 
-def get_hits_from_skillshot() -> list[tuple[str]]:
+def get_hits_from_skillshot() -> list[tuple[str, str, datetime.datetime, str, str]]:
+    """
+    Scrap skillshot.pl for today's job offers
+
+    :return: list of tuples with the following structure:
+                (role, discord_message_tpl, dt_date, company, location)
+    :rtype: list[tuple[str, str, datetime.datetime, str, str]]
+    """
+
     page = requests.get(skillshot_url)
 
 

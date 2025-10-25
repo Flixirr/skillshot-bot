@@ -7,48 +7,67 @@ from postgres_operations import DBOperations
 from skillshot_scrap import get_hits_from_skillshot
 from dotenv import load_dotenv
 from discord.ext import commands, tasks
+from ui import BotBtnUI
+
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 
+# postgres setup
 db_name = os.getenv('DB_NAME')
 db_user = os.getenv('DB_USER')
 db_pass = os.getenv('DB_PASS')
 db_url = os.getenv('DB_URL')
 db_port = os.getenv('DB_PORT')
+db_cache = {}
 
+connection = psycopg2.connect(host=db_url, database=db_name, user=db_user, password=db_pass, port=db_port)
+connection.autocommit = True
+
+# discord setup
 intents = discord.Intents.default()
 intents.message_content = True
 ping_role_name = None 
 dc_channel = None
 bot_channel = None
 
-db_cache = {}
-
-
 bot = commands.Bot(command_prefix='^', intents=intents)
 
+# notification config
+notification_time_utc = datetime.time(hour=19)
 message_tpl = """
 {rola}
 # Dzisiejsze oferty pracy (skillshot.pl)
 """
 
-connection = psycopg2.connect(host=db_url, database=db_name, user=db_user, password=db_pass, port=db_port)
-connection.autocommit = True
-
 
 async def get_or_fetch_channel(id: int) -> discord.TextChannel:
+    """
+    Get channel from cache or fetch from discord API
+
+    :param int id: channel ID
+    :return: discord channel object
+    """
     obj = bot.get_channel(id)
     return obj or await bot.fetch_channel(id)
 
 
 async def get_or_fetch_guild(id: int) -> discord.Guild:
+    """
+    Get guild from cache or fetch from discord API
+
+    :param int id: guild ID
+    :return: discord guild object
+    """
     obj = bot.get_guild(id)
     return obj or await bot.fetch_guild(id)
 
 
 @bot.event
 async def on_ready() -> None:
+    """
+    Fetch database records into cache on startup
+    """
     db_fetch = DBOps.get_all_configs()
     
     for record in db_fetch:
@@ -63,49 +82,6 @@ async def on_ready() -> None:
     await send_update.start()
 
 
-class BotBtnUI(discord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=None)
-
-
-    @discord.ui.button(label="Chce powiadomienia!", style=discord.ButtonStyle.primary, custom_id="add_role_btn")
-    async def button_callback(self, interaction: discord.Interaction, button: discord.ui.Button) -> None:
-        ping_role = None
-        
-        if str(interaction.guild_id) not in db_cache:
-            await interaction.response.send_message("Dana rola nie istnieje. Skontaktuj się z administracją serwera.")
-        else:
-            ping_role = interaction.guild.get_role(int(db_cache[str(interaction.guild_id)]["role"]))
-        
-        if ping_role:
-            if ping_role not in interaction.user.roles:
-                await interaction.user.add_roles(ping_role)
-                await interaction.response.send_message(f"{interaction.user.mention} nadano rolę **{ping_role}**", ephemeral=True)
-            else:
-                await interaction.response.send_message(f"{interaction.user.mention} posiadasz już rolę **{ping_role}**", ephemeral=True)
-        else:
-            await interaction.response.send_message("Dana rola nie istnieje. Skontaktuj się z administracją serwera.", ephemeral=True)
-
-
-    @discord.ui.button(label="Nie chcę powiadomień!", style=discord.ButtonStyle.danger, custom_id="rm_role_btn")
-    async def remove_button_callback(self, interaction: discord.Interaction, _button: discord.ui.Button) -> None:
-        ping_role = None
-        
-        if str(interaction.guild_id) not in db_cache:
-            await interaction.response.send_message("Dana rola nie istnieje. Skontaktuj się z administracją serwera.")
-        else:
-            ping_role = interaction.guild.get_role(int(db_cache[str(interaction.guild_id)]["role"]))
-        
-        if ping_role:
-            if ping_role in interaction.user.roles:
-                await interaction.user.remove_roles(ping_role)
-                await interaction.response.send_message(f"{interaction.user.mention} odebrano rolę **{ping_role}**", ephemeral=True)
-            else:
-                await interaction.response.send_message(f"{interaction.user.mention} nie posiadasz roli **{ping_role}**", ephemeral=True)
-        else:
-            await interaction.response.send_message("Dana rola nie istnieje. Skontaktuj się z administracją serwera.", ephemeral=True)
-
-
 @bot.event
 async def on_message(message: discord.Message) -> None:
     await bot.process_commands(message)
@@ -114,6 +90,9 @@ async def on_message(message: discord.Message) -> None:
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def show_config(ctx: discord.ext.commands.Context) -> None:
+    """
+    Show config as message in ctx channel
+    """
     guild_id = str(ctx.guild.id)
     if guild_id in db_cache:
         await ctx.send(f"{ctx.author.mention} Current config:\nRole: {db_cache[guild_id]['role']}\nChannel: {db_cache[guild_id]['channel']}")
@@ -124,9 +103,17 @@ async def show_config(ctx: discord.ext.commands.Context) -> None:
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def set_role(ctx: discord.ext.commands.Context, *, msg) -> None:
+    """
+    Sets role to ping for notifications in db and cache
+    """
     # if guild exists update role else insert new guild
     guild_id = str(ctx.guild.id)
     ping_role_name = discord.utils.get(ctx.guild.roles, name=msg).id
+    
+
+    if ping_role_name == None:
+        await ctx.send(f"Role does not exist")
+        return
 
     if DBOps.read(guild_id=guild_id) == []:
         DBOps.insert_guild(guild_id=guild_id, channel_id="", role_id=str(ping_role_name))
@@ -140,19 +127,23 @@ async def set_role(ctx: discord.ext.commands.Context, *, msg) -> None:
             "channel": "",
             "role": ping_role_name 
         }
-    
-    if ping_role_name == None:
-        await ctx.send(f"Role does not exist")
-    else:
-        await ctx.send(f"Set ping role to {ping_role_name}")
+
+    await ctx.send(f"Set ping role to {ping_role_name}")
 
 
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def set_channel(ctx: discord.ext.commands.Context, *, msg) -> None:
+    """
+    Sets channel to post notifications in db and cache
+    """
     # if guild exists update channel else insert new guild
     guild_id = str(ctx.guild.id)
     dc_channel = discord.utils.get(ctx.guild.channels, name=msg).id
+
+    if dc_channel == None:
+        await ctx.send("Channel does not exist")
+        return
 
     if DBOps.read(guild_id=guild_id) == []:
         DBOps.insert_guild(guild_id=guild_id, channel_id=str(dc_channel), role_id="")
@@ -167,30 +158,36 @@ async def set_channel(ctx: discord.ext.commands.Context, *, msg) -> None:
             "role": ""
         }
 
-
-    if dc_channel == None:
-        await ctx.send("Channel does not exist")
-    else:
-        await ctx.send(f"Set ping channel to {msg}")
+    await ctx.send(f"Set ping channel to {msg}")
 
 
 
-async def pull_info(dc_channel, ping_role_name, guild_id) -> None:
+async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None:
+    """
+    Send job postings to specified channel and ping specified role
+
+    :param str dc_channel: discord channel ID
+    :param str ping_role_name: discord role ID
+    :param str guild_id: discord guild ID
+    :return: None
+    """
     # pull info from skillshot and post to channel
     if dc_channel != None and ping_role_name != None:
         try:
-            bot_channel = await get_or_fetch_channel(dc_channel)
-            guild = await get_or_fetch_guild(guild_id)
+            bot_channel = await get_or_fetch_channel(id=int(dc_channel))
+            guild = await get_or_fetch_guild(id=int(guild_id))
             hits_pulled_today = get_hits_from_skillshot()
-            DBOps.insert_historical(hits_pulled_today)
             embeds = [discord.Embed(title=hit[0], description=hit[1]) for hit in hits_pulled_today]
+
             if hits_pulled_today != []:
+                DBOps.insert_historical(hits_pulled_today)
                 await bot_channel.send(message_tpl.format(rola=discord.utils.get(guild.roles, id=int(ping_role_name)).mention))
+
                 for embed in embeds:
                     job_message = await bot_channel.send(embed=embed)
                     await job_message.add_reaction("✅")
     
-                await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI())
+                await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI(db_cache=db_cache))
         except Exception as e:
             print(e)
 
@@ -198,7 +195,10 @@ async def pull_info(dc_channel, ping_role_name, guild_id) -> None:
 
 @bot.command()
 @commands.has_permissions(administrator=True)
-async def pull_test(ctx: discord.ext.commands.Context) -> None:
+async def pull_test_local(ctx: discord.ext.commands.Context) -> None:
+    """
+    Manual trigger for pulling notifications
+    """
     guild_id = str(ctx.guild.id)
     if guild_id in db_cache.keys():
         role = db_cache[guild_id]["role"]
@@ -211,11 +211,11 @@ async def pull_test(ctx: discord.ext.commands.Context) -> None:
         await ctx.send("Not initialized. Run __set_role__ and __set_channel__ commands.")
 
 
-time = datetime.time(hour=19)
-
-
-@tasks.loop(time=time)
+@tasks.loop(time=notification_time_utc)
 async def send_update() -> None:
+    """
+    Automatic daily trigger for notifications
+    """
     print("Trying to send update..")
     for guild_id in db_cache:
         role = db_cache[guild_id]["role"]
@@ -225,11 +225,14 @@ async def send_update() -> None:
 
 
 
-@pull_test.error
+@pull_test_local.error
 @set_channel.error
 @set_role.error
 @show_config.error
-async def whoami_error(ctx, error) -> None:
+async def whoami_error(ctx: discord.ext.commands.Context, error) -> None:
+    """
+    Sends message on missing privileges
+    """
     if isinstance(error, commands.CheckFailure):
         await ctx.send("Insufficient privileges")
 
