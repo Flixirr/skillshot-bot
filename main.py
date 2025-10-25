@@ -177,7 +177,7 @@ async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None
         try:
             bot_channel = await get_or_fetch_channel(id=int(dc_channel))
             guild = await get_or_fetch_guild(id=int(guild_id))
-            hits_pulled_today = get_hits_from_skillshot(pages=1, date_to_compare=datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0) - datetime.timedelta(days=1))
+            hits_pulled_today = get_hits_from_skillshot(pages=1, date_to_compare=datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0))
             embeds = [discord.Embed(title=hit[0], description=hit[1]) for hit in hits_pulled_today]
 
             if hits_pulled_today != []:
