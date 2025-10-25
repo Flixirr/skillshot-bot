@@ -28,8 +28,6 @@ db_cache = {}
 
 bot = commands.Bot(command_prefix='^', intents=intents)
 
-hits_pulled_today = []
-
 message_tpl = """
 {rola}
 # Dzisiejsze oferty pracy (skillshot.pl)
@@ -114,6 +112,7 @@ async def on_message(message: discord.Message) -> None:
 
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def show_config(ctx: discord.ext.commands.Context) -> None:
     guild_id = str(ctx.guild.id)
     if guild_id in db_cache:
@@ -178,7 +177,6 @@ async def set_channel(ctx: discord.ext.commands.Context, *, msg) -> None:
 
 async def pull_info(dc_channel, ping_role_name, guild_id) -> None:
     # pull info from skillshot and post to channel
-    global hits_pulled_today
     if dc_channel != None and ping_role_name != None:
         try:
             bot_channel = await get_or_fetch_channel(dc_channel)
@@ -230,6 +228,7 @@ async def send_update() -> None:
 @pull_test.error
 @set_channel.error
 @set_role.error
+@show_config.error
 async def whoami_error(ctx, error) -> None:
     if isinstance(error, commands.CheckFailure):
         await ctx.send("Insufficient privileges")
