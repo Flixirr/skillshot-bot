@@ -1,4 +1,5 @@
 import psycopg2
+import datetime
 
 ddl_sql_file_paths = {
     "create_configs_table": "sql/ddl/configs.sql",
@@ -74,7 +75,7 @@ class DBOperations:
             return sql
 
 
-    def insert_historical(self, date: list[tuple[str]]) -> str:
+    def insert_historical(self, entries: list[tuple[str, str, datetime.datetime, str, str]]) -> str:
         """
         Insert new historical job offers into database
         Generates MD5 hash based on offer name, company and date as primary key
@@ -108,7 +109,7 @@ class DBOperations:
         with open(dml_sql_file_paths["insert_historical"], 'r') as dml_file:
             sql = dml_file.read()
             values = ""
-            for entry in date:
+            for entry in entries:
                 values += value_template.format(
                     offer_name=f"'{entry[0]}'",
                     date_added=f"'{entry[2].strftime('%Y-%m-%d')}'",
