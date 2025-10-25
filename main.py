@@ -196,7 +196,7 @@ async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None
 
 @bot.command()
 @commands.has_permissions(administrator=True)
-async def pull_test_local(ctx: discord.ext.commands.Context) -> None:
+async def pull_test(ctx: discord.ext.commands.Context) -> None:
     """
     Manual trigger for pulling notifications
     """
@@ -226,7 +226,7 @@ async def send_update() -> None:
 
 
 
-@pull_test_local.error
+@pull_test.error
 @set_channel.error
 @set_role.error
 @show_config.error
