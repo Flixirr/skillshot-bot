@@ -102,8 +102,6 @@ class BotBtnUI(discord.ui.View):
             if ping_role in interaction.user.roles:
                 await interaction.user.remove_roles(ping_role)
                 await interaction.response.send_message(f"{interaction.user.mention} odebrano rolę **{ping_role}**", ephemeral=True)
-            elif not ping_role:
-                await interaction.response.send_message(f"Rola **{ping_role}** nie istnieje", ephemeral=True)
             else:
                 await interaction.response.send_message(f"{interaction.user.mention} nie posiadasz roli **{ping_role}**", ephemeral=True)
         else:

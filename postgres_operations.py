@@ -38,7 +38,7 @@ class DBOperations:
             return result
 
 
-    def insert_guild(self, guild_id: str, channel_id: str, role_id: str):
+    def insert_guild(self, guild_id: str, channel_id: str, role_id: str) -> str:
         with open(dml_sql_file_paths["insert_guild"], 'r') as dml_file:
             sql = dml_file.read().format(
                     guild_id=f"'{guild_id}'", 
@@ -47,8 +47,10 @@ class DBOperations:
                 )
             self.cursor.execute(sql)
 
+            return sql
 
-    def insert_historical(self, date: list[tuple[str]] ):
+
+    def insert_historical(self, date: list[tuple[str]]) -> str:
         value_template = """(
     MD5({offer_name} || {company} || {date_added})
     , CASE 
@@ -83,17 +85,23 @@ class DBOperations:
 
         self.cursor.execute(sql)
 
+        return sql
 
-    def update(self, guild_id: str, channel_id: str = None, role_id: str = None):
+
+    def update(self, guild_id: str, channel_id: str = None, role_id: str = None) -> str:
         if channel_id is not None:
             with open(dml_sql_file_paths["update_channel"], 'r') as dml_file:
                 sql = dml_file.read().format(guild_id=f"'{guild_id}'", channel_id=f"'{channel_id}'")
                 self.cursor.execute(sql)
+
+                return sql
         
         if role_id is not None:
             with open(dml_sql_file_paths["update_role"], 'r') as dml_file:
                 sql = dml_file.read().format(guild_id=f"'{guild_id}'", role_id=f"'{role_id}'")
                 self.cursor.execute(sql)
+
+                return sql
 
 
     def read(self, guild_id: str) -> tuple[str, str]:
