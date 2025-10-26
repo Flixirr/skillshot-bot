@@ -189,7 +189,12 @@ async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None
                 for embed in embeds:
                     job_message = await bot_channel.send(embed=embed)
                     await job_message.add_reaction("✅")
-    
+
+                if datetime.datetime.today().month != (datetime.datetime.today() + datetime.timedelta(days=1)).month:
+                    generate_eom_plot(data=DBOps.read_month_data())
+                    await bot_channel.send("\n## :calendar: Podsumowanie miesiąca", file=discord.File("graph.png"))
+
+
                 await bot_channel.send("Kliknij aby otrzymywać powiadomienia:", view=BotBtnUI(db_cache=db_cache))
         except Exception as e:
             print(e)
@@ -228,6 +233,7 @@ async def send_update() -> None:
 
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def test_graph(ctx: discord.ext.commands.Context) -> None:
     """
     Sends end of month plot as message attachment
@@ -238,6 +244,7 @@ async def test_graph(ctx: discord.ext.commands.Context) -> None:
 
 
 @pull_test.error
+@test_graph.error
 @set_channel.error
 @set_role.error
 @show_config.error

@@ -73,10 +73,21 @@ def generate_eom_plot(data: list[tuple[int, str]]) -> bytes:
     offers_count = [item[0] for item in data]
     seniority = [item[1] for item in data]
 
+    offers_count = [offers_count[0], offers_count[1], offers_count[3], offers_count[4], offers_count[2]]
+    seniority = [seniority[0], seniority[1], seniority[3], seniority[4], seniority[2]]
+
     # create plot
-    plt.figure(figsize=(10, 6))
-    bar = plt.bar(seniority, offers_count, color='black')
+    plt.figure(figsize=(10, 6), facecolor='#424549')
+    plt.rcParams['text.color'] = 'white'
+    plt.rcParams['axes.labelcolor'] = 'white'
+    plt.rcParams['xtick.color'] = 'white'
+    plt.rcParams['ytick.color'] = 'white'
+    bar = plt.bar(seniority, offers_count, color='#7289da')
     plt.bar_label(bar, label_type='edge')
+
+    ax = plt.gca()
+    ax.set_facecolor('#282b30')
+    
     plt.xlabel('Seniority')
     plt.ylabel('Number of Job Offers')
     plt.title(f'Job Offers by Seniority - {datetime.now().strftime("%B %Y")} [skillshot.pl]')

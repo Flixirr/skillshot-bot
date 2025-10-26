@@ -97,8 +97,10 @@ class DBOperations:
         WHEN LOWER({offer_name}) LIKE '%jr%' THEN 'junior'
         WHEN LOWER({offer_name}) LIKE '%mid%' THEN 'mid'
         WHEN LOWER({offer_name}) LIKE '%senior%' THEN 'senior'
-        WHEN LOWER({offer_name}) LIKE '%lead%' THEN 'lead'
         WHEN LOWER({offer_name}) LIKE '%principal%' THEN 'senior'
+        WHEN LOWER({offer_name}) LIKE '%lead%' THEN 'lead'
+        WHEN LOWER({offer_name}) LIKE '%head%' THEN 'lead'
+        WHEN LOWER({offer_name}) LIKE '%chief%' THEN 'lead'
         ELSE 'mid'
     END
     , {date_added}
