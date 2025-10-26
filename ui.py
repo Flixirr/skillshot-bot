@@ -79,7 +79,7 @@ def generate_eom_plot(data: list[tuple[int, str]]) -> bytes:
     plt.bar_label(bar, label_type='edge')
     plt.xlabel('Seniority')
     plt.ylabel('Number of Job Offers')
-    plt.title(f'Job Offers by Seniority - {datetime.now().strftime("%B %Y")}')
+    plt.title(f'Job Offers by Seniority - {datetime.now().strftime("%B %Y")} [skillshot.pl]')
     plt.tight_layout()
 
     plt.savefig("graph.png", format='png')
