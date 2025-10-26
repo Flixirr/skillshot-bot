@@ -20,10 +20,9 @@ def get_hits_from_skillshot(pages: int, date_to_compare: datetime.datetime) -> l
     hits_today = []
 
     for pg_num in range(1, pages + 1):
-        print(skillshot_url.format(pg_num=pg_num))
         page = requests.get(skillshot_url.format(pg_num=pg_num))
 
-        soup = bs(page.content, 'html.parser')
+        soup = bs(page.content.decode('utf-8'), 'html.parser')
         list_table_tag = soup.find_all('tr')
         notif_info = []
 
@@ -32,7 +31,7 @@ def get_hits_from_skillshot(pages: int, date_to_compare: datetime.datetime) -> l
             notif_info = row.find_all('td')
             text_split = notif_info[1].get_text().split('\n')
             
-            job_url = skillshot_url[0:-1] + row.find('a', href=True)['href']
+            job_url = skillshot_url[0:-19] + row.find('a', href=True)['href']
             contract_type = row.find('span').get_text()
             role = row.find('a').get_text()
             company = text_split[2].lstrip()

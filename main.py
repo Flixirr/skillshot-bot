@@ -165,7 +165,7 @@ async def set_channel(ctx: discord.ext.commands.Context, *, msg) -> None:
 
 
 
-async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None:
+async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str, generate_graph: bool) -> None:
     """
     Send job postings to specified channel and ping specified role
 
@@ -179,7 +179,7 @@ async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None
         try:
             bot_channel = await get_or_fetch_channel(id=int(dc_channel))
             guild = await get_or_fetch_guild(id=int(guild_id))
-            hits_pulled_today = get_hits_from_skillshot(pages=1, date_to_compare=datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0))
+            hits_pulled_today = get_hits_from_skillshot(pages=1, date_to_compare=datetime.datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)) 
             embeds = [discord.Embed(title=hit[0], description=hit[1]) for hit in hits_pulled_today]
 
             if hits_pulled_today != []:
@@ -191,7 +191,9 @@ async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str) -> None
                     await job_message.add_reaction("✅")
 
                 if datetime.datetime.today().month != (datetime.datetime.today() + datetime.timedelta(days=1)).month:
-                    generate_eom_plot(data=DBOps.read_month_data())
+                    if generate_graph:
+                        generate_eom_plot(data=DBOps.read_month_data())
+                        graph_generated = True
                     await bot_channel.send("\n## :calendar: Podsumowanie miesiąca", file=discord.File("graph.png"))
 
 
@@ -212,7 +214,7 @@ async def pull_test(ctx: discord.ext.commands.Context) -> None:
         role = db_cache[guild_id]["role"]
         channel = db_cache[guild_id]["channel"]
         if role and channel:
-            await pull_info(dc_channel=channel, ping_role_name=role, guild_id=guild_id)
+            await pull_info(dc_channel=channel, ping_role_name=role, guild_id=guild_id, generate_graph=False)
         else:
             await ctx.send("Channel or role not set. Run __show_config__ command.")
     else:
@@ -225,11 +227,13 @@ async def send_update() -> None:
     Automatic daily trigger for notifications
     """
     print("Trying to send update..")
+    generate_graph = True
     for guild_id in db_cache:
         role = db_cache[guild_id]["role"]
         channel = db_cache[guild_id]["channel"]
 
-        await pull_info(dc_channel=channel, ping_role_name=role, guild_id=guild_id)
+        await pull_info(dc_channel=channel, ping_role_name=role, guild_id=guild_id, generate_graph=generate_graph)
+        generate_graph = False
 
 
 @bot.command()
