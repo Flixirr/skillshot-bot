@@ -193,7 +193,6 @@ async def pull_info(dc_channel: str, ping_role_name: str, guild_id: str, generat
                 if datetime.datetime.today().month != (datetime.datetime.today() + datetime.timedelta(days=1)).month:
                     if generate_graph:
                         generate_eom_plot(data=DBOps.read_month_data())
-                        graph_generated = True
                     await bot_channel.send("\n## :calendar: Podsumowanie miesiąca", file=discord.File("graph.png"))
 
 
