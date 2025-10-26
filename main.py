@@ -8,8 +8,10 @@ from postgres_operations import DBOperations
 from skillshot_scrap import get_hits_from_skillshot
 from dotenv import load_dotenv
 from discord.ext import commands, tasks
-from ui import BotBtnUI
-
+from ui import (
+    BotBtnUI
+    , generate_eom_plot
+)
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -225,6 +227,15 @@ async def send_update() -> None:
         await pull_info(dc_channel=channel, ping_role_name=role, guild_id=guild_id)
 
 
+@bot.command()
+async def test_graph(ctx: discord.ext.commands.Context) -> None:
+    """
+    Sends end of month plot as message attachment
+    """
+    generate_eom_plot(data=DBOps.read_month_data())
+    await ctx.send("\n## :calendar: Podsumowanie miesiąca", file=discord.File("graph.png"))
+
+
 
 @pull_test.error
 @set_channel.error
@@ -252,5 +263,7 @@ if __name__ == "__main__":
                     DBOps.backfill(date_from=datetime.datetime.strptime(sys.argv[2], '%Y-%m-%d'))
                 except ValueError as ve:
                     print("Invalid date format. Use YYYY-MM-DD.")
+        if sys.argv[1:] and sys.argv[1] == "test_graph":
+            generate_eom_plot(data=DBOps.read_month_data())
         else:
             bot.run(token, reconnect=True)

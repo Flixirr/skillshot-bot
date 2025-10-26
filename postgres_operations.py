@@ -16,6 +16,7 @@ dml_sql_file_paths = {
 dql_sql_file_paths = {
     "read_config": "sql/dql/get_config.sql",
     "get_all_configs": "sql/dql/get_all_configs.sql",
+    "get_month_data": "sql/dql/get_month_data.sql",
 }
 
 
@@ -91,12 +92,13 @@ class DBOperations:
     , CASE 
         WHEN LOWER({offer_name}) LIKE '%intern%' THEN 'intern'
         WHEN LOWER({offer_name}) LIKE '%staż%' THEN 'intern'
+        WHEN LOWER({offer_name}) LIKE '%prakt%' THEN 'intern'
         WHEN LOWER({offer_name}) LIKE '%junior%' THEN 'junior'
         WHEN LOWER({offer_name}) LIKE '%jr%' THEN 'junior'
         WHEN LOWER({offer_name}) LIKE '%mid%' THEN 'mid'
         WHEN LOWER({offer_name}) LIKE '%senior%' THEN 'senior'
         WHEN LOWER({offer_name}) LIKE '%lead%' THEN 'lead'
-        WHEN LOWER({offer_name}) LIKE '%principal%' THEN 'lead'
+        WHEN LOWER({offer_name}) LIKE '%principal%' THEN 'senior'
         ELSE 'mid'
     END
     , {date_added}
@@ -155,6 +157,7 @@ class DBOperations:
     def read(self, guild_id: str) -> tuple[str]:
         """
         Fetch guild configuration from database
+
         :param str guild_id: discord guild ID
         :return: tuple with the following structure:
                     (guild_id)
@@ -165,7 +168,22 @@ class DBOperations:
             self.cursor.execute(sql)
             result = self.cursor.fetchone()
             return result
-    
+
+
+    def read_month_data(self) -> list[tuple[int, str]]:
+        """
+        Fetch historical job offers data from current month grouped by seniority
+
+        :return: list of tuples with the following structure:
+                    (offers_count, seniority)
+        :rtype: list[tuple[int, str]]
+        """
+        with open(dql_sql_file_paths["get_month_data"], 'r') as dql_file:
+            sql = dql_file.read()
+            self.cursor.execute(sql)
+            result = self.cursor.fetchall()
+            return result
+
 
     def backfill(self, date_from: datetime.datetime) -> str:
         """

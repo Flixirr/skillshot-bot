@@ -55,3 +55,31 @@ class BotBtnUI(discord.ui.View):
                 await interaction.response.send_message(f"{interaction.user.mention} nie posiadasz roli **{ping_role}**", ephemeral=True)
         else:
             await interaction.response.send_message("Dana rola nie istnieje. Skontaktuj się z administracją serwera.", ephemeral=True)
+
+
+def generate_eom_plot(data: list[tuple[int, str]]) -> bytes:
+    """
+    Generates end of month plot as bytes
+
+    :param list[tuple[int, str]] data: list of tuples with the following structure:
+                                        (offers_count, seniority)
+    :return: plot image as bytes
+    :rtype: bytes
+    """
+    import matplotlib.pyplot as plt
+    from datetime import datetime
+
+    # prepare data
+    offers_count = [item[0] for item in data]
+    seniority = [item[1] for item in data]
+
+    # create plot
+    plt.figure(figsize=(10, 6))
+    bar = plt.bar(seniority, offers_count, color='black')
+    plt.bar_label(bar, label_type='edge')
+    plt.xlabel('Seniority')
+    plt.ylabel('Number of Job Offers')
+    plt.title(f'Job Offers by Seniority - {datetime.now().strftime("%B %Y")}')
+    plt.tight_layout()
+
+    plt.savefig("graph.png", format='png')
